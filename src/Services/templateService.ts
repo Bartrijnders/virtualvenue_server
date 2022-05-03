@@ -12,7 +12,12 @@ export class TemplateService {
 
     getTemplate = async (id: string) => {
       let result = await this._templateDao.getById(id);
-      
+      return result;
+    }
+
+    getAllTemplates = async() => {
+      let result = await this._templateDao.getAll();
+      return result;
     }
 
 }

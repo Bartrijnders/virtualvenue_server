@@ -4,19 +4,21 @@ import { Widget } from "../entities/Widget";
 import { WidgetPlacement } from "../entities/WidgetPlacement";
 import { templateFactory } from "../util/template/templateFactory";
 import { TemplateFactoryAble } from "../util/template/templateFactoryAble";
+import { TemplateResultTranslater as TemplateResultTranslator } from "../util/template/templateResultTranslator";
 import { daoAble } from "./interfaces/daoAble";
 
 
 export class TemplateDao implements daoAble<Template> {
 
-    _pool: Pool;
-    _widgetPlacementDao : daoAble<WidgetPlacement>;
-    _templateFactory: TemplateFactoryAble
+    private _pool: Pool;
+    private _widgetPlacementDao : daoAble<WidgetPlacement>;
+    private _templateResultTranslator: TemplateResultTranslator;
 
-    constructor(pool: Pool, widgetPlacementDao: daoAble<WidgetPlacement>, templateFactory: TemplateFactoryAble){
+    constructor(pool: Pool, widgetPlacementDao: daoAble<WidgetPlacement>, templateResultTranslator: TemplateResultTranslator){
         this._pool = pool;
         this._widgetPlacementDao = widgetPlacementDao;
-        this._templateFactory = templateFactory;
+        this._templateResultTranslator = templateResultTranslator
+        
     }
     save = async (toSave: Template) => {
         try{
@@ -36,7 +38,7 @@ export class TemplateDao implements daoAble<Template> {
     getAll = async() =>  {
         try{
             let result = await this._pool.query('SELECT * FROM template');
-            return result.rows;
+            return this._templateResultTranslator.translate(result);
         }catch(error: any){
             console.log(error);
         }
@@ -45,14 +47,7 @@ export class TemplateDao implements daoAble<Template> {
     getById = async(id: string) => {
         try{
             let result = await this._pool.query('Select * FORM template WHERE id = $1', [id]);
-            let templateToReturn: Template;
-            result.rows.forEach(async entry => {
-            if (entry.hasOwnProperty('id') && entry.hasOwnProperty('name')){
-                templateToReturn = this._templateFactory.create(entry.name, entry.id);
-            }
-            console.log(templateToReturn);
-            return templateToReturn;
-        });
+            return this._templateResultTranslator.translate(result)[0];
         } catch(error){
             return Promise.reject();
         }
