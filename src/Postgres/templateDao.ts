@@ -2,6 +2,8 @@ import { Pool } from "pg";
 import { Template } from "../entities/Template";
 import { Widget } from "../entities/Widget";
 import { WidgetPlacement } from "../entities/WidgetPlacement";
+import { templateFactory } from "../util/template/templateFactory";
+import { TemplateFactoryAble } from "../util/template/templateFactoryAble";
 import { daoAble } from "./interfaces/daoAble";
 
 
@@ -9,10 +11,12 @@ export class TemplateDao implements daoAble<Template> {
 
     _pool: Pool;
     _widgetPlacementDao : daoAble<WidgetPlacement>;
+    _templateFactory: TemplateFactoryAble
 
-    constructor(pool: Pool, widgetPlacementDao: daoAble<WidgetPlacement>){
+    constructor(pool: Pool, widgetPlacementDao: daoAble<WidgetPlacement>, templateFactory: TemplateFactoryAble){
         this._pool = pool;
         this._widgetPlacementDao = widgetPlacementDao;
+        this._templateFactory = templateFactory;
     }
     save = async (toSave: Template) => {
         try{
@@ -38,8 +42,21 @@ export class TemplateDao implements daoAble<Template> {
         }
     return []
     };
-    getById = (id: string) => {
-        return new Template('test');
+    getById = async(id: string) => {
+        try{
+            let result = await this._pool.query('Select * FORM template WHERE id = $1', [id]);
+            let templateToReturn: Template;
+            result.rows.forEach(async entry => {
+            if (entry.hasOwnProperty('id') && entry.hasOwnProperty('name')){
+                templateToReturn = this._templateFactory.create(entry.name, entry.id);
+            }
+            console.log(templateToReturn);
+            return templateToReturn;
+        });
+        } catch(error){
+            return Promise.reject();
+        }
+        
     };
 
     delete = async (toDelete: Template) => {
