@@ -7,18 +7,18 @@ export class TemplateResultTranslater implements queryResultTranslateAble<Templa
 
     private _templateFacotry: TemplateFactoryAble;
 
-    constructor(templateFactory: TemplateFactoryAble){
+    constructor(templateFactory: TemplateFactoryAble) {
         this._templateFacotry = templateFactory;
     }
 
     translate = (queryResult: QueryResult<any>) => {
         let templatesToReturn: Template[] = [];
         queryResult.rows.forEach(element => {
-            if (element.hasOwnProperty('id') && element.hasOwnProperty('name')){
+            if (element.hasOwnProperty('id') && element.hasOwnProperty('name')) {
                 templatesToReturn.push(this._templateFacotry.create(element.name, element.id));
             }
         });
         return templatesToReturn;
     };
-    
+
 }
