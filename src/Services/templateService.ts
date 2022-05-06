@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import { Template } from "../entities/Template";
+import { TemplateConstructorType } from "../entities/types/templateConstructorType";
 import { daoAble } from "../Postgres/interfaces/daoAble";
 import { TemplateDao } from "../Postgres/templateDao";
 import { TemplateFactoryAble } from "../util/template/templateFactoryAble";
@@ -15,6 +16,13 @@ export class TemplateService implements CrudServiceAble<Template>{
     this._pool = pool;
     this._templateFactory = templateFactory;
   }
+  getById = async (id: string) => {
+    let result = this._templateDao.getById(id);
+    return result;
+  };
+  create = (values: TemplateConstructorType) => {
+    let newTemplate = this._templateFactory.create(values);
+  };
 
   get = async (id: string) => {
     let result = await this._templateDao.getById(id);
@@ -24,11 +32,6 @@ export class TemplateService implements CrudServiceAble<Template>{
   getAll = async() => {
     let result = await this._templateDao.getAll();
     return result;
-  }
-
-  save = (name: string) => {
-    let newTemplate = this._templateFactory.create(name);
-    this._templateDao.save(newTemplate);
   }
 
   update = (templateToUpdate: Template) => {

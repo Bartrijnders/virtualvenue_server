@@ -1,3 +1,5 @@
+import { TemplateConstructorType } from "../../entities/types/templateConstructorType";
+
 export interface CreateServiceAble<T> {
-    create: (values: {}) => void;
+    create: (templateValues: TemplateConstructorType) => void;
 }
