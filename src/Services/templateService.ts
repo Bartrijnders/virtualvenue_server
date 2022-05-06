@@ -3,8 +3,9 @@ import { Template } from "../entities/Template";
 import { daoAble } from "../Postgres/interfaces/daoAble";
 import { TemplateDao } from "../Postgres/templateDao";
 import { TemplateFactoryAble } from "../util/template/templateFactoryAble";
+import { CrudServiceAble } from "./interfaces/crudServiceAble";
 
-export class TemplateService {
+export class TemplateService implements CrudServiceAble<Template>{
   _templateDao: daoAble<Template>;
   _pool: Pool;
   private _templateFactory: TemplateFactoryAble;
@@ -15,32 +16,26 @@ export class TemplateService {
     this._templateFactory = templateFactory;
   }
 
-  getTemplate = async (id: string) => {
+  get = async (id: string) => {
     let result = await this._templateDao.getById(id);
     return result;
   }
 
-  getAllTemplates = async () => {
+  getAll = async() => {
     let result = await this._templateDao.getAll();
     return result;
   }
 
-  createTemplate = (name: string) => {
+  save = (name: string) => {
     let newTemplate = this._templateFactory.create(name);
     this._templateDao.save(newTemplate);
   }
 
-  updateTemplateName = (templateToUpdate: Template, newName: string) => {
-    if (templateToUpdate.name !== newName) {
-      templateToUpdate.name = newName;
+  update = (templateToUpdate: Template) => {
       this._templateDao.update(templateToUpdate);
-    }
   }
 
-  deleteTemplate = (templateToDelete: Template) => {
+  delete = (templateToDelete: Template) => {
     this._templateDao.delete(templateToDelete);
   }
-
-
-
 }

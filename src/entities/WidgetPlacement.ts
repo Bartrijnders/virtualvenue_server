@@ -1,15 +1,17 @@
 import { v4 } from "uuid";
-import {Widget} from './Widget';
+import { WidgetLike } from "./interfaces/widgetLike";
+import { WidgetPlacementLike } from "./interfaces/widgetPlacementLike";
+import { Widget } from './Widget';
 
-export class WidgetPlacement {
+export class WidgetPlacement implements WidgetPlacementLike {
     private _id: string;
     private _positionX: number;
     private _positionY: number;
     private _height: number;
     private _width: number;
-    private _widget: Widget;
+    private _widget: WidgetLike;
 
-    constructor(positionX: number, positionY: number, height: number, width: number, widget: Widget){
+    constructor(positionX: number, positionY: number, height: number, width: number, widget: WidgetLike) {
         this._id = v4();
         this._positionX = positionX;
         this._positionY = positionY;
@@ -17,44 +19,35 @@ export class WidgetPlacement {
         this._width = width;
         this._widget = widget;
     }
-
-    public get id (){
-        return this._id;
-    }
-
-    public get positionX(): number {
+    setXposition = (position_X: number) => {
+        this._positionX = position_X;
+    };
+    getXposition = () => {
         return this._positionX;
-    }
-
-    public set positionX(value: number) {
-        this._positionX = value;
-    }
-
-    public get positionY(): number {
+    };
+    setYposition = (position_Y: number) => {
+        this._positionY = position_Y;
+    };
+    getYposition = () => {
         return this._positionY;
-    }
-
-    public set positionY(value: number) {
-        this._positionY = value;
-    }
-
-    public get height(): number {
-        return this._height;
-    }
-
-    public set heigth(newHeight: number) {
-        this._height = newHeight;
-    }
-
-    public get width(): number{
+    };
+    setWidth = (width: number) => {
+        this._width = width;
+    };
+    getWidth = () => {
         return this._width;
-    }
-
-    public set width(newWidth: number){
-        this._width = this.width;
-    }
-
-    public get widget(): Widget {
+    };
+    setHeight = (height: number) => {
+        this._height = height;
+    };
+    getHeight = () => {
+        return this._height;
+    };
+    getId = () => {
+        return this._id;
+    };
+    getWidget = () => {
         return this._widget;
     }
+
 }

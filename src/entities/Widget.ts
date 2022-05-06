@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
+import { WidgetLike } from "./interfaces/widgetLike";
 
-export class Widget {
+export class Widget implements WidgetLike {
     private _id: string ;
     private _name: string;
 
@@ -8,17 +9,15 @@ export class Widget {
         this._id = id ?? v4();
         this._name = name;
     }
-
-    public get id(): string {
+    getId = () => {
         return this._id;
-    }
-
-    public get name() {
+    };
+    getName = () => {
         return this._name;
-    }
-
-    public set name(newName: string) {
+    };
+    setName = (newName: string) => {
         this._name = newName;
-    }
+    };
+
     
 }
