@@ -1,4 +1,4 @@
-import { WidgetType } from "../types/widgetType";
+import { WidgetConstructorType } from "../types/widgetConstructorType";
 import { IdAble } from "./idAble";
 import { NameAlbe } from "./nameAble";
 

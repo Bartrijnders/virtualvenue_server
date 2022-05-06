@@ -1,13 +1,14 @@
 import { QueryResult } from "pg";
 import { Template } from "../../entities/Template";
 import { queryResultTranslateAble } from "./interfaces/queryResultTranslateAble";
-import { TemplateFactoryAble } from "./templateFactoryAble";
+import { factoryAble } from "../../entities/factory/factoryAble";
+import { TemplateConstructorType } from "../../entities/types/templateConstructorType";
 
 export class TemplateResultTranslater implements queryResultTranslateAble<Template> {
 
-    private _templateFacotry: TemplateFactoryAble;
+    private _templateFacotry: factoryAble<Template, TemplateConstructorType>;
 
-    constructor(templateFactory: TemplateFactoryAble) {
+    constructor(templateFactory: factoryAble<Template, TemplateConstructorType>) {
         this._templateFacotry = templateFactory;
     }
 
@@ -15,7 +16,8 @@ export class TemplateResultTranslater implements queryResultTranslateAble<Templa
         let templatesToReturn: Template[] = [];
         queryResult.rows.forEach(element => {
             if (element.hasOwnProperty('id') && element.hasOwnProperty('name')) {
-                templatesToReturn.push(this._templateFacotry.create(element.name, element.id));
+                let values = {name: element.name, id: element.id};
+                templatesToReturn.push(this._templateFacotry.create(values));
             }
         });
         return templatesToReturn;

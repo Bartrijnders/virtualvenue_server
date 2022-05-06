@@ -1,19 +1,15 @@
-import { Pool } from "pg";
 import { Template } from "../entities/Template";
 import { TemplateConstructorType } from "../entities/types/templateConstructorType";
 import { daoAble } from "../Postgres/interfaces/daoAble";
-import { TemplateDao } from "../Postgres/templateDao";
-import { TemplateFactoryAble } from "../util/template/templateFactoryAble";
+import { factoryAble } from "../entities/factory/factoryAble";
 import { CrudServiceAble } from "./interfaces/crudServiceAble";
 
 export class TemplateService implements CrudServiceAble<Template>{
   _templateDao: daoAble<Template>;
-  _pool: Pool;
-  private _templateFactory: TemplateFactoryAble;
+  private _templateFactory: factoryAble<Template, TemplateConstructorType>;
 
-  constructor(templateDao: daoAble<Template>, pool: Pool, templateFactory: TemplateFactoryAble) {
+  constructor(templateDao: daoAble<Template>, templateFactory: factoryAble<Template, TemplateConstructorType>) {
     this._templateDao = templateDao;
-    this._pool = pool;
     this._templateFactory = templateFactory;
   }
   getById = async (id: string) => {

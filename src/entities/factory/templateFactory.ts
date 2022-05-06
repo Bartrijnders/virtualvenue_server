@@ -1,8 +1,8 @@
 import { Template } from "../../entities/Template";
 import { TemplateConstructorType } from "../../entities/types/templateConstructorType";
-import { TemplateFactoryAble } from "./templateFactoryAble";
+import { factoryAble } from "./factoryAble";
 
-export class templateFactory implements TemplateFactoryAble {
+export class templateFactory implements factoryAble<Template, TemplateConstructorType> {
 
     create =  (input: TemplateConstructorType) => {
         return new Template(input.name, input.id);

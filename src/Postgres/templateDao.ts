@@ -3,7 +3,7 @@ import { Template } from "../entities/Template";
 import { Widget } from "../entities/Widget";
 import { WidgetPlacement } from "../entities/WidgetPlacement";
 import { templateFactory } from "../util/template/templateFactory";
-import { TemplateFactoryAble } from "../util/template/templateFactoryAble";
+import { factoryAble } from "../entities/factory/factoryAble";
 import { TemplateResultTranslater as TemplateResultTranslator } from "../util/template/templateResultTranslator";
 import { daoAble } from "./interfaces/daoAble";
 
