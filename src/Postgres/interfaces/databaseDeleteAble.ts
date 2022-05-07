@@ -1,3 +1,3 @@
-export interface databaseDeleteAble<T> {
+export interface DatabaseDeleteAble<T> {
     delete: (toDelete: T) => void;
 } 

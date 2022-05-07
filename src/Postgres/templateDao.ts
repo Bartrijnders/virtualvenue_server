@@ -1,36 +1,35 @@
 import { Pool } from "pg";
+import { TemplateLike } from "../entities/interfaces/templateLike";
+import { WidgetPlacementLike } from "../entities/interfaces/widgetPlacementLike";
 import { Template } from "../entities/Template";
-import { Widget } from "../entities/Widget";
 import { WidgetPlacement } from "../entities/WidgetPlacement";
-import { templateFactory } from "../util/template/templateFactory";
-import { factoryAble } from "../entities/factory/factoryAble";
 import { TemplateResultTranslater as TemplateResultTranslator } from "../util/template/templateResultTranslator";
 import { daoAble } from "./interfaces/daoAble";
-
+import { PlacementDao } from "./interfaces/placementDao";
 
 export class TemplateDao implements daoAble<Template> {
 
     private _pool: Pool;
-    private _widgetPlacementDao: daoAble<WidgetPlacement>;
+    private _widgetPlacementDao: PlacementDao<WidgetPlacementLike, TemplateLike>;
     private _templateResultTranslator: TemplateResultTranslator;
 
-    constructor(pool: Pool, widgetPlacementDao: daoAble<WidgetPlacement>, templateResultTranslator: TemplateResultTranslator) {
+    constructor(pool: Pool, widgetPlacementDao: PlacementDao<WidgetPlacementLike, TemplateLike>, templateResultTranslator: TemplateResultTranslator) {
         this._pool = pool;
         this._widgetPlacementDao = widgetPlacementDao;
         this._templateResultTranslator = templateResultTranslator
 
     }
-    save = async (toSave: Template) => {
+    save = async (toSave: TemplateLike) => {
         try {
-            let result = await this._pool.query('INSERT INTO template (id, name) VALUES ($1, $2);', [toSave.id, toSave.name])
+            let result = await this._pool.query('INSERT INTO template (id, name) VALUES ($1, $2);', [toSave.getId, toSave.getName])
         } catch (error: any) {
             console.log(error);
         }
     };
 
-    update = async (toUpdate: Template) => {
+    update = async (toUpdate: TemplateLike) => {
         try {
-            let result = await this._pool.query('UPDATE template SET name = $1 WHERE id = $2', [toUpdate.name, toUpdate.id])
+            let result = await this._pool.query('UPDATE template SET name = $1 WHERE id = $2', [toUpdate.getName, toUpdate.getId])
         } catch (error: any) {
             console.log(error);
         }
@@ -55,9 +54,9 @@ export class TemplateDao implements daoAble<Template> {
         }
     };
 
-    delete = async (toDelete: Template) => {
+    delete = async (toDelete: TemplateLike) => {
         try {
-            let result = await this._pool.query('DELETE FROM template WHERE id = $1;', [toDelete.id])
+            let result = await this._pool.query('DELETE FROM template WHERE id = $1;', [toDelete.getId])
         }
         catch (error: any) {
             console.log(error);

@@ -4,7 +4,7 @@ import { daoAble } from "../Postgres/interfaces/daoAble";
 import { factoryAble } from "../entities/factory/factoryAble";
 import { CrudServiceAble } from "./interfaces/crudServiceAble";
 
-export class TemplateService implements CrudServiceAble<Template>{
+export class TemplateService implements CrudServiceAble<Template, TemplateConstructorType>{
   _templateDao: daoAble<Template>;
   private _templateFactory: factoryAble<Template, TemplateConstructorType>;
 

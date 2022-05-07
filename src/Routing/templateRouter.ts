@@ -1,16 +1,19 @@
 import express from 'express';
-export const router = express.Router();
+import { TemplateService } from '../Services/templateService';
+export const templateRouter = express.Router();
 
 /**
  * Router method. Returns all templates.
  */
-router.get('/', (res, req, next) => {
-
-})
+templateRouter.get('/', (req, res, next) => {
+    res.status(200).send({name: "hello"});
+    console.log('test get');
+    
+});
 
 /**
  * Router method. Returns a template with the given id.
  */
-router.get('/:id', (res, req, next) => {
-
-})
+templateRouter.get('/:id', (res, req, next) => {
+    console.log('id;')
+});
