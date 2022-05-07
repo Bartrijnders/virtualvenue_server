@@ -67,6 +67,7 @@ templateRouter.put('/:id', async(req, res) => {
                 template.setName(query._name)
                 serviceContainer.getTemplateService().update(template);
                 res.status(201).json(template);
+                return;
             }
         }
         res.sendStatus(400);
@@ -75,3 +76,16 @@ templateRouter.put('/:id', async(req, res) => {
         res.status(500).send(error);
     }
 });
+
+templateRouter.delete('/:id', async(req, res) => {
+    let id = req.params.id;
+    let found = await serviceContainer.getTemplateService().getById(id);
+    if(found){
+        serviceContainer.getTemplateService().delete(found);
+        res.sendStatus(204);
+        return;
+    } else {
+        res.sendStatus(404);
+        return;
+    }
+})

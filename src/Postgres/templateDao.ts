@@ -59,7 +59,7 @@ export class TemplateDao implements daoAble<Template> {
 
     delete = async (toDelete: TemplateLike) => {
         try {
-            let result = await this._pool.query('DELETE FROM template WHERE id = $1;', [toDelete.getId])
+            let result = await this._pool.query('DELETE FROM template WHERE id = $1;', [toDelete.getId()])
         }
         catch (error: any) {
             console.log(error);
