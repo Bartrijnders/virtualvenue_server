@@ -1,5 +1,6 @@
 import {WidgetPlacementLike} from '../interfaces/widgetPlacementLike';
 export type TemplateConstructorType = {
-    name: string;
-    id?: string
+    _name: string;
+    _id?: string
+    _widgetPlacements?: WidgetPlacementLike[]
 }

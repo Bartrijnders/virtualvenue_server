@@ -10,7 +10,7 @@ import { TemplateService } from "./templateService";
 import { WidgetPlacementService } from "./widgetPlacementService";
 import { WidgetService } from "./widgetService";
 
-export class ServiceContainer {
+class ServiceContainer {
     private _pool = POOL;
     private _widgetDao = new WidgetDao(this._pool);
     private _widgetPlacementDao = new WidgetPlacementDao(this._pool, this._widgetDao);
@@ -35,3 +35,5 @@ export class ServiceContainer {
         return this._templateService;
     }
 }
+
+export default new ServiceContainer();

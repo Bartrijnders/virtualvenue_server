@@ -129,6 +129,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/express-validator@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/express-validator@npm:3.0.0"
+  dependencies:
+    express-validator: "*"
+  checksum: bd6081a9cf752087cfb561c4df1fc5bf736385cc7e45b3f5ef440475c3d1abe9ff536d0ed5947b2b3c1d72c575340f7305f1d924700d7ab71631fa42b8974470
+  languageName: node
+  linkType: hard
+
 "@types/express@npm:^4.17.13":
   version: 4.17.13
   resolution: "@types/express@npm:4.17.13"
@@ -872,6 +881,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"express-validator@npm:*, express-validator@npm:^6.14.0":
+  version: 6.14.0
+  resolution: "express-validator@npm:6.14.0"
+  dependencies:
+    lodash: ^4.17.21
+    validator: ^13.7.0
+  checksum: e43ba1f18a4f02d784e44e13b1b43269a61f9d9283f31e51c230ff6d31591b3d67ad89e444a0941c0688bfd220049087e606bb61569c0eb8df2f118b866cfb43
+  languageName: node
+  linkType: hard
+
 "express@npm:^4.18.1":
   version: 4.18.1
   resolution: "express@npm:4.18.1"
@@ -1440,6 +1459,13 @@ __metadata:
   dependencies:
     package-json: ^6.3.0
   checksum: fbc72b071eb66c40f652441fd783a9cca62f08bf42433651937f078cd9ef94bf728ec7743992777826e4e89305aef24f234b515e6030503a2cbee7fc9bdc2c0f
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
   languageName: node
   linkType: hard
 
@@ -2600,11 +2626,13 @@ __metadata:
   resolution: "tutorial@workspace:."
   dependencies:
     "@types/express": ^4.17.13
+    "@types/express-validator": ^3.0.0
     "@types/node": ^17.0.30
     "@types/pg": ^8.6.5
     "@types/uuid": ^8.3.4
     dotenv: ^16.0.0
     express: ^4.18.1
+    express-validator: ^6.14.0
     nodemon: ^2.0.16
     pg: ^8.7.3
     ts-node: ^10.7.0
@@ -2759,6 +2787,13 @@ __metadata:
   version: 3.0.1
   resolution: "v8-compile-cache-lib@npm:3.0.1"
   checksum: 78089ad549e21bcdbfca10c08850022b22024cdcc2da9b168bcf5a73a6ed7bf01a9cebb9eac28e03cd23a684d81e0502797e88f3ccd27a32aeab1cfc44c39da0
+  languageName: node
+  linkType: hard
+
+"validator@npm:^13.7.0":
+  version: 13.7.0
+  resolution: "validator@npm:13.7.0"
+  checksum: 2b83283de1222ca549a7ef57f46e8d49c6669213348db78b7045bce36a3b5843ff1e9f709ebf74574e06223461ee1f264f8cc9a26a0060a79a27de079d8286ef
   languageName: node
   linkType: hard
 

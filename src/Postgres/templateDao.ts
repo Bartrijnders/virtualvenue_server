@@ -21,7 +21,8 @@ export class TemplateDao implements daoAble<Template> {
     }
     save = async (toSave: TemplateLike) => {
         try {
-            let result = await this._pool.query('INSERT INTO template (id, name) VALUES ($1, $2);', [toSave.getId, toSave.getName])
+            let result = await this._pool.query('INSERT INTO template (id, name) VALUES ($1, $2);', [toSave.getId(), toSave.getName()])
+            return result;
         } catch (error: any) {
             console.log(error);
         }
@@ -29,7 +30,7 @@ export class TemplateDao implements daoAble<Template> {
 
     update = async (toUpdate: TemplateLike) => {
         try {
-            let result = await this._pool.query('UPDATE template SET name = $1 WHERE id = $2', [toUpdate.getName, toUpdate.getId])
+            let result = await this._pool.query('UPDATE template SET name = $1 WHERE id = $2', [toUpdate.getName(), toUpdate.getId()])
         } catch (error: any) {
             console.log(error);
         }
@@ -47,9 +48,11 @@ export class TemplateDao implements daoAble<Template> {
 
     getById = async (id: string) => {
         try {
-            let result = await this._pool.query('Select * FORM template WHERE id = $1', [id]);
-            return this._templateResultTranslator.translate(result)[0];
+            let result = await this._pool.query('Select * FROM template WHERE id = $1', [id]);
+            console.log(result);
+            return this._templateResultTranslator.translate(result)[0]
         } catch (error) {
+            console.log(error);
             return Promise.reject();
         }
     };

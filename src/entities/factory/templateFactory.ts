@@ -5,7 +5,7 @@ import { factoryAble } from "./factoryAble";
 export class templateFactory implements factoryAble<Template, TemplateConstructorType> {
 
     create =  (input: TemplateConstructorType) => {
-        return new Template(input.name, input.id);
+        return new Template(input._name, input._id);
     };
     
 }

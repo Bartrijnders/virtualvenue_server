@@ -40,10 +40,12 @@ class TemplateDao {
         });
         this.getById = (id) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let result = yield this._pool.query('Select * FORM template WHERE id = $1', [id]);
+                let result = yield this._pool.query('Select * FROM template WHERE id = $1', [id]);
+                console.log(result);
                 return this._templateResultTranslator.translate(result)[0];
             }
             catch (error) {
+                console.log(error);
                 return Promise.reject();
             }
         });

@@ -3,12 +3,13 @@ import { TemplateConstructorType } from "../entities/types/templateConstructorTy
 import { daoAble } from "../Postgres/interfaces/daoAble";
 import { factoryAble } from "../entities/factory/factoryAble";
 import { CrudServiceAble } from "./interfaces/crudServiceAble";
+import { TemplateLike } from "../entities/interfaces/templateLike";
 
-export class TemplateService implements CrudServiceAble<Template, TemplateConstructorType>{
-  _templateDao: daoAble<Template>;
-  private _templateFactory: factoryAble<Template, TemplateConstructorType>;
+export class TemplateService implements CrudServiceAble<TemplateLike, TemplateConstructorType>{
+  _templateDao: daoAble<TemplateLike>;
+  private _templateFactory: factoryAble<TemplateLike, TemplateConstructorType>;
 
-  constructor(templateDao: daoAble<Template>, templateFactory: factoryAble<Template, TemplateConstructorType>) {
+  constructor(templateDao: daoAble<TemplateLike>, templateFactory: factoryAble<TemplateLike, TemplateConstructorType>) {
     this._templateDao = templateDao;
     this._templateFactory = templateFactory;
   }
@@ -18,6 +19,8 @@ export class TemplateService implements CrudServiceAble<Template, TemplateConstr
   };
   create = (values: TemplateConstructorType) => {
     let newTemplate = this._templateFactory.create(values);
+    this._templateDao.save(newTemplate);
+    return newTemplate;
   };
 
   get = async (id: string) => {
@@ -30,11 +33,11 @@ export class TemplateService implements CrudServiceAble<Template, TemplateConstr
     return result;
   }
 
-  update = (templateToUpdate: Template) => {
+  update = (templateToUpdate: TemplateLike) => {
       this._templateDao.update(templateToUpdate);
   }
 
-  delete = (templateToDelete: Template) => {
+  delete = (templateToDelete: TemplateLike) => {
     this._templateDao.delete(templateToDelete);
   }
 }
