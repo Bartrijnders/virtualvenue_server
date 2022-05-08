@@ -7,7 +7,7 @@ class TemplateResultTranslater {
             let templatesToReturn = [];
             queryResult.rows.forEach(element => {
                 if (element.hasOwnProperty('id') && element.hasOwnProperty('name')) {
-                    let values = { name: element.name, id: element.id };
+                    let values = { _name: element.name, _id: element.id };
                     templatesToReturn.push(this._templateFacotry.create(values));
                 }
             });

@@ -1,14 +1,9 @@
 import express from 'express';
-import {body, validationResult} from 'express-validator'
-import { json } from 'stream/consumers';
-import { runInNewContext } from 'vm';
-import { templateFactory } from '../entities/factory/templateFactory';
-import { Template } from '../entities/Template';
-import { TemplateConstructorType } from '../entities/types/templateConstructorType';
 import serviceContainer from '../Services/serviceContainer';
-import { TemplateService } from '../Services/templateService';
+import { widgetPlacementRouter } from './widgetPlacementRouting';
 
 export const templateRouter = express.Router();
+
 
 /**
  * Router method. Returns all templates.

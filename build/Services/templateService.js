@@ -18,6 +18,7 @@ class TemplateService {
         });
         this.create = (values) => {
             let newTemplate = this._templateFactory.create(values);
+            this._templateDao.save(newTemplate);
             return newTemplate;
         };
         this.get = (id) => __awaiter(this, void 0, void 0, function* () {

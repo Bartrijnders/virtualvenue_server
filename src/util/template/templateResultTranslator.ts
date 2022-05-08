@@ -2,13 +2,13 @@ import { QueryResult } from "pg";
 import { Template } from "../../entities/Template";
 import { queryResultTranslateAble } from "./interfaces/queryResultTranslateAble";
 import { factoryAble } from "../../entities/factory/factoryAble";
-import { TemplateConstructorType } from "../../entities/types/templateConstructorType";
+import { TemplateType } from "../../entities/types/templateType";
 
 export class TemplateResultTranslater implements queryResultTranslateAble<Template> {
 
-    private _templateFacotry: factoryAble<Template, TemplateConstructorType>;
+    private _templateFacotry: factoryAble<Template, TemplateType>;
 
-    constructor(templateFactory: factoryAble<Template, TemplateConstructorType>) {
+    constructor(templateFactory: factoryAble<Template, TemplateType>) {
         this._templateFacotry = templateFactory;
     }
 

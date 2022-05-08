@@ -1,11 +1,11 @@
 import { WidgetPlacementLike } from "../interfaces/widgetPlacementLike";
-import { WidgetPlacementConstructorType } from "../types/widgetPlacementConstructorType";
+import { WidgetPlacementType } from "../types/widgetPlacementType";
 import { WidgetPlacement } from "../WidgetPlacement";
 import { factoryAble } from "./factoryAble";
 
-export class WidgetPlacementFactory implements factoryAble<WidgetPlacementLike, WidgetPlacementConstructorType> {
-    create = (input: WidgetPlacementConstructorType) => {
-        return new WidgetPlacement(input.positionX, input.positionY, input.height, input.height, input.widget);
+export class WidgetPlacementFactory implements factoryAble<WidgetPlacementLike, WidgetPlacementType> {
+    create = (input: WidgetPlacementType) => {
+        return new WidgetPlacement(input._positionX, input._positionY, input._height, input._height, input._widget);
     };
     
 }

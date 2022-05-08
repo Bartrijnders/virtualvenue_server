@@ -13,10 +13,10 @@ import { WidgetService } from "./widgetService";
 class ServiceContainer {
     private _pool = POOL;
     private _widgetDao = new WidgetDao(this._pool);
-    private _widgetPlacementDao = new WidgetPlacementDao(this._pool, this._widgetDao);
+    private _WidgetPlacementFactory = new WidgetPlacementFactory();
+    private _widgetPlacementDao = new WidgetPlacementDao(this._pool, this._widgetDao, this._WidgetPlacementFactory);
     private _templateFactory = new templateFactory();
     private _widgetFactory = new WidgetFactory();
-    private _WidgetPlacementFactory = new WidgetPlacementFactory();
     private _templateResultTranslator = new TemplateResultTranslater(this._templateFactory);
     private _templateDao = new TemplateDao(this._pool, this._widgetPlacementDao, this._templateResultTranslator);
     private _widgetService = new WidgetService(this._widgetDao, this._widgetFactory);

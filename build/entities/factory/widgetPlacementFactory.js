@@ -5,7 +5,7 @@ const WidgetPlacement_1 = require("../WidgetPlacement");
 class WidgetPlacementFactory {
     constructor() {
         this.create = (input) => {
-            return new WidgetPlacement_1.WidgetPlacement(input.positionX, input.positionY, input.height, input.height, input.widget);
+            return new WidgetPlacement_1.WidgetPlacement(input._positionX, input._positionY, input._height, input._height, input._widget);
         };
     }
 }

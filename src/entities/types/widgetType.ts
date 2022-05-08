@@ -1,4 +1,4 @@
-export type WidgetConstructorType = {
+export type WidgetType = {
      id?: string ;
      name: string;
 }

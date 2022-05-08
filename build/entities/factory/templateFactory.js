@@ -5,7 +5,7 @@ const Template_1 = require("../../entities/Template");
 class templateFactory {
     constructor() {
         this.create = (input) => {
-            return new Template_1.Template(input.name, input.id);
+            return new Template_1.Template(input._name, input._id);
         };
     }
 }

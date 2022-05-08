@@ -12,6 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WidgetPlacementService = void 0;
 class WidgetPlacementService {
     constructor(widgetPlacementDao, widgetPlacementFactory) {
+        this.getById = (id) => __awaiter(this, void 0, void 0, function* () {
+            let result = yield this._widgetPlacementDao.getById(id);
+            return result;
+        });
         this.create = (values, parent) => {
             let newWidgetPlacement = this._widgetPlacementFactory.create(values);
             parent.add(newWidgetPlacement);
@@ -20,9 +24,6 @@ class WidgetPlacementService {
         this.getByParent = (parent) => __awaiter(this, void 0, void 0, function* () {
             return yield this._widgetPlacementDao.getByParent(parent);
         });
-        this.getBysParent = (parent) => {
-            let result = this._widgetPlacementDao.getByParent(parent);
-        };
         this.update = (toUpdate) => {
             this._widgetPlacementDao.update(toUpdate);
         };

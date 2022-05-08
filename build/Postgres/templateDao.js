@@ -14,7 +14,8 @@ class TemplateDao {
     constructor(pool, widgetPlacementDao, templateResultTranslator) {
         this.save = (toSave) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let result = yield this._pool.query('INSERT INTO template (id, name) VALUES ($1, $2);', [toSave.getId, toSave.getName]);
+                let result = yield this._pool.query('INSERT INTO template (id, name) VALUES ($1, $2);', [toSave.getId(), toSave.getName()]);
+                return result;
             }
             catch (error) {
                 console.log(error);
@@ -22,7 +23,7 @@ class TemplateDao {
         });
         this.update = (toUpdate) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let result = yield this._pool.query('UPDATE template SET name = $1 WHERE id = $2', [toUpdate.getName, toUpdate.getId]);
+                let result = yield this._pool.query('UPDATE template SET name = $1 WHERE id = $2', [toUpdate.getName(), toUpdate.getId()]);
             }
             catch (error) {
                 console.log(error);
@@ -51,7 +52,7 @@ class TemplateDao {
         });
         this.delete = (toDelete) => __awaiter(this, void 0, void 0, function* () {
             try {
-                let result = yield this._pool.query('DELETE FROM template WHERE id = $1;', [toDelete.getId]);
+                let result = yield this._pool.query('DELETE FROM template WHERE id = $1;', [toDelete.getId()]);
             }
             catch (error) {
                 console.log(error);

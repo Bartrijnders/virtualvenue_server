@@ -2,7 +2,7 @@ import { Pool } from "pg";
 import { WidgetLike } from "../entities/interfaces/widgetLike";
 import { Widget } from "../entities/Widget";
 import { daoAble } from "./interfaces/daoAble";
-import { DatabaseDeleteAble } from "./interfaces/databaseDeleteAble";
+import { DatabaseDeleteAble } from "./interfaces/DBDeleteAble";
 
 export class WidgetDao implements daoAble<WidgetLike> {
 

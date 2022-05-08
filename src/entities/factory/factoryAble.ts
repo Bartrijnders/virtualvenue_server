@@ -1,5 +1,5 @@
 import {Template} from '../Template'
-import { TemplateConstructorType } from '../types/templateConstructorType';
+import { TemplateType } from '../types/templateType';
 
 export interface factoryAble<T, P> {
     create: (input: P) => T;
